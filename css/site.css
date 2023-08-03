@@ -5,6 +5,12 @@
     --white-color: #FFF4E9;
 }
 
+.fontFamily {
+    font-family: 'Crimson Text', serif;
+    font-family: 'Lugrasimo', cursive;
+    font-family: 'Montserrat', sans-serif;
+}
+
 body {
     color:var(--dark-color);
 }
@@ -57,6 +63,19 @@ footer .social>a:hover {
 
 .checklist >li i {
     color: var(--secondary-color);
+}
+
+.Fizz {
+    color: #a2d2ff;
+}
+
+.Buzz {
+    color: #ffafcc;
+}
+
+.FizzBuzz {
+    color: #cdb4db;
+    font-weight: bold;
 }
 
 code[class*="language-"],

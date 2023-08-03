@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Natalie Cheng</title>
+    <title>FizzBuzz: A Coding Project By Natalie Cheng</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,13 +17,18 @@
     <link href="css/prism.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon_io/favicon-32x32.png">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Lugrasimo&family=Montserrat:ital,wght@1,600&display=swap" rel="stylesheet">
+
 </head>
 
 <body class="d-flex flex-column h-100">
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/NC.png" class="d-inline-block align-text-top" alt="Natalie Cheng Logo" width="30" height="24"> APP NAME</a>
+            <a class="navbar-brand fontFamily" href="#"><img src="img/NC.png" class="d-inline-block align-text-top" alt="Natalie Cheng Logo" width="30" height="24"> FizzBuzz</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -40,7 +45,7 @@
                         <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://github.com/nataliemcheng/JSSiteTemplate">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/nataliemcheng/FizzBuzz">Git Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://nataliecheng-portfolio.netlify.app/">About</a>
@@ -53,21 +58,119 @@
     <!-- Main Section -->
     <main class="flex-shrink-0">
         <div class="container py-4 px-5 mt-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for FizzBuzz</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        // Call Hello World
-                        function helloWorld() {
-                            alert("Hello World");
+                        // get values
+                        // controller function
+                        function getVals() {
+
+                            // get values
+                            let fizzNum = document.getElementById("fizzNum").value;
+                            let buzzNum = document.getElementById("buzzNum").value;
+
+                            // check for numbers
+                            fizzNum = parseInt(fizzNum);
+                            buzzNum = parseInt(buzzNum);
+
+                            // check that the values are actually integers
+                            if (Number.isInteger(fizzNum) && Number.isInteger(buzzNum)) {
+                                let data = fizzBuzz(fizzNum, buzzNum);
+                                display(data);
+                            } else {
+                                alert("Integers Only");
+                            }
+                        }
+
+                        // logic function
+                        function fizzBuzz(fizzNum, buzzNum) {
+                            let result = [];
+
+                            for (let i = 1; i <= 100; i++) {
+                                if (i % fizzNum == 0 && i % buzzNum == 0){
+                                    result.push('FizzBuzz');
+                                } else if (i % fizzNum == 0) {
+                                    result.push('Fizz');
+                                } else if (i % buzzNum == 0) {
+                                    result.push('Buzz');
+                                } else {
+                                    result.push(i);
+                                }
+                            }
+                            return result;
+                        }
+
+                        // displays the results to the user
+                        // display/view function
+                        function display(data) {
+                            let tableBody = document.getElementById("results");
+
+                            // get the template row
+                            let templateRow = document.getElementById("template");
+
+                            // clear the table first
+                            tableBody.innerHTML = "";
+
+                            for (let i = 0; i < data.length; i += 5) {
+                                let tableRow = document.importNode(templateRow.content, true);
+
+                                // grab the tds to put into an array
+                                let rowCols = tableRow.querySelectorAll("td");
+
+                                // adds the appropriate colors
+                                rowCols[0].classList.add(data[i]); 
+                                // adds the data to the table
+                                rowCols[0].textContent = data[i];
+
+                                rowCols[1].classList.add(data[i + 1]);
+                                rowCols[1].textContent = data[i + 1];
+
+                                rowCols[2].classList.add(data[i + 2]);
+                                rowCols[2].textContent = data[i + 2];
+
+                                rowCols[3].classList.add(data[i + 3]);
+                                rowCols[3].textContent = data[i + 3];
+
+                                rowCols[4].classList.add(data[i + 4]);
+                                rowCols[4].textContent = data[i + 4];
+
+                                tableBody.appendChild(tableRow);
+                            }
                         }
                     </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <p>The Code is structured in three functions:</p>
+                    <h5>getVals()</h5>
+                    <p>
+                        The function <strong>getVals()</strong> is the controller function. It starts by getting the values of the Fizz and Buzz values entered 
+                        by the user using document.getElementsById. The Fizz and Buzz values are assigned an id in the form for this purpose. Next,
+                        the function checks for valid inputs, which are numbers, using parseInt(). Then, the boolean AND is used to ensure that both 
+                        numbers are integers, before the next functions execute. Once the conditions are satisfied, function fizzBuzz() runs, using
+                        the user-inputed Fizz and Buzz numbers as parameters. The resulting array is assigned to 'data,' which becomes the parameter for 
+                        the next function that runs, display(), which displays the results back to the user. If the conditions are not satisfied, the 
+                        user is given an alert to input valid numbers.
+                    </p>
+                    <hr>
+                    <h5>fizzBuzz()</h5>
+                    <p>
+                        The function <strong>fizzBuzz()</strong> is the logic function, where a number is calculated to see if it is divisible by the Fizz or Buzz numbers.
+                        It starts by instantiating an array called result. In the for loop, the loop makes 100 iterations as the resulting table goes from 1 to 100. 
+                        Then, using a series of if/else statements, a number can be appropriately classified. If a number is divisible by both the Fizz and Buzz 
+                        numbers, then doing i % fizzNum and i % buzzNum should result in 0. If it does not, fizzNum and buzzNum are checked individually. If a number
+                        is not divisble by any, then the number itself is pushed onto the array. Otherwise, the appropriate phrase is pushed onto the resulting array.
+                    </p>
+                    <hr>
+                    <h5>display()</h5>
+                    <p>The function <strong>display()</strong> is the display/view function. It takes a parameter data, which is the results of the fizzBuzz() function. It starts by getting 
+                        the results table, using the same method of document.GetElementsById, and clearing the table. A template was also made in HTML, which will be used 
+                        to input the data into the 5 columns in the results table. The same ID method is used to get the template element. Then, a for loop is used 
+                        to traverse through the array, incrementing in 5s since the data is being separated into 5 columns. Using importNode, this allows the content to be entered.
+                        The querySelectorAll grabs the table data to put into an array. Then, for each column index, if a number is Fizz, Buzz, or FizzBuzz, the appropriate class colors 
+                        is added, which is done through CSS. textContent adds the content to the table. Lastly, appendChild adds the row to the table body. 
+                    </p>
                 </div>
             </div>
         </div>

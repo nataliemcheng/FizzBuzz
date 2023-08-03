@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Natalie Cheng</title>
+    <title>FizzBuzz: A Coding Project By Natalie Cheng</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,13 +16,18 @@
     <link href="css/site.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon_io/favicon-32x32.png">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Lugrasimo&family=Montserrat:ital,wght@1,600&display=swap" rel="stylesheet">
+
 </head>
 
 <body class="d-flex flex-column h-100">
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/NC.png" class="d-inline-block align-text-top" alt="Natalie Cheng Logo" width="30" height="24"> APP NAME</a>
+            <a class="navbar-brand fontFamily" href="#"><img src="img/NC.png" class="d-inline-block align-text-top" alt="Natalie Cheng Logo" width="30" height="24"> FizzBuzz</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,7 +44,7 @@
                         <a class="nav-link" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://github.com/nataliemcheng/JSSiteTemplate">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/nataliemcheng/FizzBuzz">Git Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://nataliecheng-portfolio.netlify.app/">About</a>
@@ -52,7 +57,45 @@
     <!-- Main Section -->
     <main class="flex-shrink-0">
         <div class="container">
-            
+            <div class="row mt-5 row-cols-1 row-cols-lg-2">
+                <div class="col-5 border-end border-2">
+                    <div class="row">
+                        <h3>Fizz Buzz: A Coding Project</h3>
+                        <p>A program that prints the numbers from 1 to 100. From 1 to 100, if a number is divisible by the Fizz number,
+                            the number is replaced by 'Fizz', same with 'Buzz.' If it is divisble by both, it is replaced by 'FizzBuzz.'</p>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <h4>Instructions</h4>
+                        <p>Enter a Fizz number and a Buzz number. Press the button and the values will appear. 
+                        </p>
+                    </div>
+                </div>
+                <div class="col-7">
+                    <h5>Enter Values</h5>
+                    <form>
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-control" id="fizzNum" placeholder="Enter a Fizz number" type="number" value="1" aria-label="Enter a Fizz number">
+                            </div>
+                            <div class="col">
+                                <input class="form-control" id="buzzNum" placeholder="Enter a Buzz number" type="number" value="100" aria-label="Enter a Buzz number">
+                            </div>
+                            <div class="col-12 d-flex justify-content-end mt-2">
+                                <button type="button" id="btnSubmit" class="btn btn-dark">FizzBuzz!</button>
+                            </div>
+                        </div>  
+                    </form>
+                    <h4>Results</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tbody id="results">
+                                <!-- Results Go Here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -80,11 +123,24 @@
         </div>
     </footer>
 
+    <template id="template">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </template>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
     <script src="js/site.js"></script>
+    <script>
+        document.getElementById("btnSubmit").addEventListener("click", getVals);
+    </script>
 </body>
 
 </html>
